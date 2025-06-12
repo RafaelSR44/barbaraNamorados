@@ -378,32 +378,32 @@
 
         <div class="content-grid">
             <div class="card">
-                <h3>🌹 Nossa Primeira Foto Juntos</h3>
+                <h3>🌹 Minha Wandinha</h3>
                 <div class="photo-frame" onclick="changePhoto(this)">
-                    <img src="fotos/foto1.jpg" alt="Nossa primeira foto juntos" />
+                    <img src="fotos/foto1.jpg" alt="Minha Wandinha" />
                 </div>
                 <p style="text-align: center; color: #666; font-style: italic;">
-                    O momento em que tudo começou...
+                    A minha emo predileta kkkk...
                 </p>
             </div>
 
             <div class="card">
-                <h3>💕 Nosso Momento Favorito</h3>
+                <h3>💕 No Villa</h3>
                 <div class="photo-frame" onclick="changePhoto(this)">
-                    <img src="fotos/foto2.jpg" alt="Nosso momento favorito" />
+                    <img src="fotos/foto2.jpg" alt="No Villa" />
                 </div>
                 <p style="text-align: center; color: #666; font-style: italic;">
-                    Lembranças que guardarei para sempre
+                    O por do sol é so um detalhe, a gnt que arrasa 
                 </p>
             </div>
 
             <div class="card">
-                <h3>🎈 Barbara Sorrindo</h3>
+                <h3>🔥 Nosso cantinho</h3>
                 <div class="photo-frame" onclick="changePhoto(this)">
-                    <img src="fotos/foto3.jpg" alt="Barbara sorrindo" />
+                    <img src="fotos/foto3.jpg" alt="XD" />
                 </div>
                 <p style="text-align: center; color: #666; font-style: italic;">
-                    Seu sorriso ilumina meus dias
+                    Só deus sabe oq acontece ai kkkkk
                 </p>
             </div>
 
@@ -448,12 +448,12 @@
             </div>
 
             <div class="card">
-                <h3>🌅 Nossos Amanheceres</h3>
+                <h3>🧩 A autista</h3>
                 <div class="photo-frame" onclick="changePhoto(this)">
-                    <img src="fotos/foto8.jpg" alt="Nossos amanheceres" />
+                    <img src="fotos/foto8.jpg" alt="bonitinha" />
                 </div>
                 <p style="text-align: center; color: #666; font-style: italic;">
-                    Cada novo dia contigo
+                    Zoiudinha
                 </p>
             </div>
 
@@ -613,48 +613,48 @@
             // Verificar qual card é este baseado no título
             const isAlternate = element.hasAttribute('data-alternate');
             
-            if (title.innerHTML.includes('🌹 Nossa Primeira Foto Juntos') || title.innerHTML.includes('💑 Nosso Primeiro Selfie')) {
+            if (title.innerHTML.includes('🌹 Minha Wandinha') || title.innerHTML.includes('💑 Os paparazzi nos amam')) {
                 if (!isAlternate) {
-                    title.innerHTML = '💑 Nosso Primeiro Selfie';
+                    title.innerHTML = '💑 Os paparazzi nos amam';
                     img.src = 'fotos/foto10.jpg';
-                    img.alt = 'Nosso primeiro selfie';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A primeira de muitas fotos juntos...</span>';
+                    img.alt = 'fetinha-flopada';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A festa flopada e a gnt no arraso...</span>';
                     element.setAttribute('data-alternate', 'true');
                 } else {
-                    title.innerHTML = '🌹 Nossa Primeira Foto Juntos';
+                    title.innerHTML = '🌹 Minha Wandinha';
                     img.src = 'fotos/foto1.jpg';
-                    img.alt = 'Nossa primeira foto juntos';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">O momento em que tudo começou...</span>';
+                    img.alt = 'Minha Wandinha';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A minha emo predileta kkkk...</span>';
                     element.removeAttribute('data-alternate');
                 }
             }
-            else if (title.innerHTML.includes('💕 Nosso Momento Favorito') || title.innerHTML.includes('🎭 Momentos Divertidos')) {
+            else if (title.innerHTML.includes('💕 No Villa') || title.innerHTML.includes('🏹 Os cupidos')) {
                 if (!isAlternate) {
-                    title.innerHTML = '🎭 Momentos Divertidos';
+                    title.innerHTML = '🏹 Os cupidos';
                     img.src = 'fotos/foto11.jpg';
-                    img.alt = 'Momentos divertidos';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Rindo juntos é a melhor parte</span>';
+                    img.alt = 'fodões';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Se a gnt não ajudasse, o Antonio ia ser BV ainda KKKKKK</span>';
                     element.setAttribute('data-alternate', 'true');
                 } else {
-                    title.innerHTML = '💕 Nosso Momento Favorito';
+                    title.innerHTML = '💕 No Villa';
                     img.src = 'fotos/foto2.jpg';
-                    img.alt = 'Nosso momento favorito';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Lembranças que guardarei para sempre</span>';
+                    img.alt = 'No Villa';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">O por do sol é so um detalhe, a gnt que arrasa </span>';
                     element.removeAttribute('data-alternate');
                 }
             }
-            else if (title.innerHTML.includes('🎈 Barbara Sorrindo') || title.innerHTML.includes('😍 Barbara Linda')) {
+            else if (title.innerHTML.includes('🔥 Nosso cantinho') || title.innerHTML.includes('🚲 Os ciclistas')) {
                 if (!isAlternate) {
-                    title.innerHTML = '😍 Barbara Linda';
+                    title.innerHTML = '🚲 Os ciclistas';
                     img.src = 'fotos/foto12.jpg';
-                    img.alt = 'Barbara linda';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A mulher mais linda do mundo</span>';
+                    img.alt = 'Os ciclistas';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Agora falta a roda gigante kkkk</span>';
                     element.setAttribute('data-alternate', 'true');
                 } else {
-                    title.innerHTML = '🎈 Barbara Sorrindo';
+                    title.innerHTML = '🔥 Nosso cantinho';
                     img.src = 'fotos/foto3.jpg';
-                    img.alt = 'Barbara sorrindo';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Seu sorriso ilumina meus dias</span>';
+                    img.alt = 'XD';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Só deus sabe oq acontece ai kkkkk</span>';
                     element.removeAttribute('data-alternate');
                 }
             }
@@ -718,18 +718,18 @@
                     element.removeAttribute('data-alternate');
                 }
             }
-            else if (title.innerHTML.includes('🌅 Nossos Amanheceres') || title.innerHTML.includes('🌙 Nossas Noites')) {
+            else if (title.innerHTML.includes('🧩 A autista') || title.innerHTML.includes('🤔 O TDAH')) {
                 if (!isAlternate) {
-                    title.innerHTML = '🌙 Nossas Noites';
+                    title.innerHTML = '🤔 O TDAH';
                     img.src = 'fotos/foto17.jpg';
-                    img.alt = 'Nossas noites';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Sob as estrelas contigo</span>';
+                    img.alt = 'feio arrumado';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Perdidinho</span>';
                     element.setAttribute('data-alternate', 'true');
                 } else {
-                    title.innerHTML = '🌅 Nossos Amanheceres';
+                    title.innerHTML = '🧩 A autista';
                     img.src = 'fotos/foto8.jpg';
-                    img.alt = 'Nossos amanheceres';
-                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Cada novo dia contigo</span>';
+                    img.alt = 'bonitinha';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Zoiudinha</span>';
                     element.removeAttribute('data-alternate');
                 }
             }
