@@ -1,739 +1,838 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>♥ Para minha Barbara ♥</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>♥ Para minha Barbara ♥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #ff6b9d, #ff8fab, #ffa8c5, #ffc7de);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab, #ffa8c5, #ffc7de);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-      50% {
-        background-position: 100% 50%;
-      }
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
 
-    .floating-hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .heart {
-      position: absolute;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 20px;
-      animation: float 6s infinite linear;
-    }
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 1s ease-out;
+        }
 
-      10% {
-        opacity: 1;
-      }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-      90% {
-        opacity: 1;
-      }
+        .main-title {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
 
-      100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-    .container {
-      position: relative;
-      z-index: 10;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-style: italic;
+        }
 
-    .header {
-      text-align: center;
-      margin-bottom: 50px;
-      animation: slideDown 1s ease-out;
-    }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
 
-    @keyframes slideDown {
-      from {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
 
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-    .main-title {
-      font-size: 4rem;
-      color: #fff;
-      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
-    }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
+        .card h3 {
+            color: #d63384;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-      50% {
-        transform: scale(1.05);
-      }
+        .photo-frame {
+            width: 100%;
+            height: 250px;
+            border: 5px solid #ff6b9d;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ffc7de, #ff8fab);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-      100% {
-        transform: scale(1);
-      }
-    }
+        .photo-frame:hover {
+            transform: scale(1.02);
+            border-color: #d63384;
+        }
 
-    .subtitle {
-      font-size: 1.5rem;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      font-style: italic;
-    }
+        .photo-placeholder {
+            color: #d63384;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin-bottom: 50px;
-    }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      animation: fadeInUp 1s ease-out;
-    }
+        .love-message {
+            background: linear-gradient(135deg, #ff6b9d, #d63384);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            animation: heartBeat 2s infinite;
+        }
 
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.05); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.05); }
+            70% { transform: scale(1); }
+        }
 
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+        .love-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    }
+        .love-message p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
 
-    .card h3 {
-      color: #d63384;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+        .interactive-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
 
-    .photo-frame {
-      width: 100%;
-      height: 250px;
-      border: 5px solid #ff6b9d;
-      border-radius: 15px;
-      background: linear-gradient(45deg, #ffc7de, #ff8fab);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        .love-button {
+            background: linear-gradient(135deg, #ff6b9d, #d63384);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-    .photo-frame:hover {
-      transform: scale(1.02);
-      border-color: #d63384;
-    }
+        .love-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
 
-    .photo-placeholder {
-      color: #d63384;
-      font-size: 1.2rem;
-      text-align: center;
-      font-weight: bold;
-    }
+        .surprise-message {
+            background: #ffe5f1;
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            animation: bounceIn 0.8s ease-out;
+        }
 
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-    }
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-    .love-message {
-      background: linear-gradient(135deg, #ff6b9d, #d63384);
-      color: white;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      margin: 50px 0;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-      animation: heartBeat 2s infinite;
-    }
+        .memory-timeline {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
 
-    @keyframes heartBeat {
-      0% {
-        transform: scale(1);
-      }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #ffe5f1;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b9d;
+            transition: all 0.3s ease;
+        }
 
-      14% {
-        transform: scale(1.05);
-      }
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-      28% {
-        transform: scale(1);
-      }
+        .timeline-date {
+            background: #ff6b9d;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 20px;
+            min-width: 120px;
+            text-align: center;
+        }
 
-      42% {
-        transform: scale(1.05);
-      }
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+        }
 
-      70% {
-        transform: scale(1);
-      }
-    }
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .love-message h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
+        .mouse-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            color: #ff6b9d;
+            font-size: 16px;
+            animation: mouseHeartFall 3s ease-out forwards;
+        }
 
-    .love-message p {
-      font-size: 1.3rem;
-      line-height: 1.6;
-      font-style: italic;
-    }
+        @keyframes mouseHeartFall {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(20px) scale(1.2) rotate(90deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(60px) scale(0.8) rotate(180deg);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(120px) scale(0.6) rotate(270deg);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(200px) scale(0.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    .interactive-section {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      margin: 50px 0;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-
-    .love-button {
-      background: linear-gradient(135deg, #ff6b9d, #d63384);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .love-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .surprise-message {
-      background: #ffe5f1;
-      border: 2px solid #ff6b9d;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      display: none;
-      animation: bounceIn 0.8s ease-out;
-    }
-
-    @keyframes bounceIn {
-      0% {
-        transform: scale(0.3);
-        opacity: 0;
-      }
-
-      50% {
-        transform: scale(1.05);
-      }
-
-      70% {
-        transform: scale(0.9);
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .memory-timeline {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 40px;
-      margin: 50px 0;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      margin: 30px 0;
-      padding: 20px;
-      background: #ffe5f1;
-      border-radius: 15px;
-      border-left: 5px solid #ff6b9d;
-      transition: all 0.3s ease;
-    }
-
-    .timeline-item:hover {
-      transform: translateX(10px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .timeline-date {
-      background: #ff6b9d;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 20px;
-      font-weight: bold;
-      margin-right: 20px;
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .sparkle {
-      position: fixed;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    @keyframes sparkle {
-      0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform: scale(1) rotate(180deg);
-        opacity: 0.8;
-      }
-
-      100% {
-        transform: scale(0) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    .mouse-heart {
-      position: fixed;
-      pointer-events: none;
-      z-index: 999;
-      color: #ff6b9d;
-      font-size: 16px;
-      animation: mouseHeartFall 3s ease-out forwards;
-    }
-
-    @keyframes mouseHeartFall {
-      0% {
-        transform: translateY(0) scale(1) rotate(0deg);
-        opacity: 1;
-      }
-
-      25% {
-        transform: translateY(20px) scale(1.2) rotate(90deg);
-        opacity: 0.8;
-      }
-
-      50% {
-        transform: translateY(60px) scale(0.8) rotate(180deg);
-        opacity: 0.6;
-      }
-
-      75% {
-        transform: translateY(120px) scale(0.6) rotate(270deg);
-        opacity: 0.3;
-      }
-
-      100% {
-        transform: translateY(200px) scale(0.2) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .main-title {
-        font-size: 2.5rem;
-      }
-
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        padding: 10px;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="floating-hearts"></div>
-
-  <div class="container">
-    <header class="header">
-      <h1 class="main-title">♥ Barbara ♥</h1>
-      <p class="subtitle">Meu amor, minha vida, minha felicidade</p>
-    </header>
-
-    <div class="content-grid">
-      <div class="card">
-        <h3>🌹 Na festa da babaca</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto1.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          Aquela airfryer salvou dms a festa, né? kkkkk...
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🚲 No pedal & Por do Sol</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto2.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          3km de pedaladas e um por do sol inesquecível!
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🚨 No nosso cantinho</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto3.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          Nem te conto o que aconteceu aqui kkkkkk...
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🌟 Na festa flopada do seu amigo</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto4.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          Tudo o que ainda vamos viver...
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🍩 Na padaria do donut gostoso</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto5.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          Slk, bom dms, né?
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🫨 Nosso SkinCare</h3>
-        <div class="photo-frame" onclick="changePhoto(this)">
-          <div class="photo-placeholder">
-            <img src="fotos/foto6.jpg">
-          </div>
-        </div>
-        <p style="text-align: center; color: #666; font-style: italic;">
-          Cuidando da pele ne mores kkkkkk...
-        </p>
-      </div>
-    </div>
-
-    <div class="love-message">
-      <h2>Barbara, meu amor ♥</h2>
-      <p>
-        Você é a pessoa mais especial do mundo. Cada dia ao seu lado é uma nova aventura,
-        um novo motivo para sorrir. Obrigado por fazer minha vida tão mais colorida e feliz.
-        Te amo mais que ontem, menos que amanhã!
-      </p>
-    </div>
-
-    <div class="interactive-section">
-      <h3 style="color: #d63384; margin-bottom: 30px;">💝 Surpresas para você</h3>
-
-      <button class="love-button" onclick="showSurprise(1)">
-        💌 Mensagem Secreta
-      </button>
-
-      <button class="love-button" onclick="showSurprise(2)">
-        🎵 Nossa Música
-      </button>
-
-      <button class="love-button" onclick="showSurprise(3)">
-        🌺 Promessa de Amor
-      </button>
-
-      <div id="surprise1" class="surprise-message">
-        <h4 style="color: #d63384;">💌 Só para você saber...</h4>
-        <p>Barbara, você é meu pensamento ao acordar e meu último suspiro antes de dormir.
-          Cada batida do meu coração ecoa seu nome. Te amo infinitamente! ♥</p>
-      </div>
-
-      <div id="surprise2" class="surprise-message">
-        <h4 style="color: #d63384;">🎵 Nossa trilha sonora</h4>
-        <p>Toda vez que escuto nossa música, meu coração acelera e eu me lembro de como
-          somos perfeitos juntos. Vamos dançar ela para sempre! 💃🕺</p>
-      </div>
-
-      <div id="surprise3" class="surprise-message">
-        <h4 style="color: #d63384;">🌺 Minha promessa</h4>
-        <p>Prometo te amar todos os dias da minha vida, te fazer sorrir quando estiver triste,
-          te abraçar quando precisar de carinho e ser seu companheiro em todas as aventuras! 🤝♥</p>
-      </div>
-    </div>
-
-    <div class="memory-timeline">
-      <h3 style="text-align: center; color: #d63384; margin-bottom: 30px;">📅 Nossa Linha do Tempo</h3>
-
-      <div class="timeline-item">
-        <div class="timeline-date">Primeiro Encontro</div>
-        <div>
-          <strong>O dia que mudou tudo</strong><br>
-          Quando te vi pela primeira vez, soube que você seria especial na minha vida ✨
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">Primeiro Beijo</div>
-        <div>
-          <strong>Momento mágico</strong><br>
-          O tempo parou e o mundo ficou mais bonito. Foi perfeito! 💋
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">Primeiro "Te Amo"</div>
-        <div>
-          <strong>Palavras do coração</strong><br>
-          Quando finalmente disse o que meu coração já sabia há tempos ♥
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">Hoje e Sempre</div>
-        <div>
-          <strong>Nosso presente e futuro</strong><br>
-          Cada dia é uma nova página da nossa história de amor 📖💕
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Criar corações flutuantes
-    function createFloatingHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.innerHTML = '♥';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDelay = Math.random() * 2 + 's';
-      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-
-      document.querySelector('.floating-hearts').appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
-
-    // Criar corações a cada 1.5 segundos
-    setInterval(createFloatingHeart, 1500);
-
-    // Função para mostrar surpresas
-    function showSurprise(num) {
-      // Esconder todas as surpresas
-      for (let i = 1; i <= 3; i++) {
-        document.getElementById('surprise' + i).style.display = 'none';
-      }
-
-      // Mostrar a surpresa selecionada
-      const surprise = document.getElementById('surprise' + num);
-      surprise.style.display = 'block';
-
-      // Criar brilhos especiais
-      createSparkles();
-    }
-
-    // Função para mostrar surpresas
-    function showPhoto(num) {
-      // Esconder todas as surpresas
-      for (let i = 1; i <= 3; i++) {
-        document.getElementById('photo' + i).style.display = 'none';
-      }
-
-      // Mostrar a surpresa selecionada
-      const photo = document.getElementById('photo' + num);
-      photo.style.display = 'block';
-
-      // Criar brilhos especiais
-      createSparkles();
-    }
+    <div class="floating-hearts"></div>
     
-    // Função para trocar fotos (simulação)
-    function changePhoto(element) {
-      const placeholder = element.querySelector('.photo-placeholder');
-      if (placeholder) {
-        placeholder.innerHTML = '📷 Foto adicionada com amor! ♥<br><small>Substitua esta div por uma tag img com sua foto</small>';
-        placeholder.style.color = '#ff6b9d';
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">♥ Barbara ♥</h1>
+            <p class="subtitle">Meu amor, minha vida, minha felicidade</p>
+        </header>
 
-        // Criar efeito de brilho
-        createSparkles();
-      }
-    }
+        <div class="content-grid">
+            <div class="card">
+                <h3>🌹 Nossa Primeira Foto Juntos</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto1.jpg" alt="Nossa primeira foto juntos" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    O momento em que tudo começou...
+                </p>
+            </div>
 
-    // Função para criar brilhos
-    function createSparkles() {
-      for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          const sparkle = document.createElement('div');
-          sparkle.className = 'sparkle';
-          sparkle.innerHTML = '✨';
-          sparkle.style.left = Math.random() * window.innerWidth + 'px';
-          sparkle.style.top = Math.random() * window.innerHeight + 'px';
-          sparkle.style.animation = 'sparkle 1s ease-out forwards';
+            <div class="card">
+                <h3>💕 Nosso Momento Favorito</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto2.jpg" alt="Nosso momento favorito" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Lembranças que guardarei para sempre
+                </p>
+            </div>
 
-          document.body.appendChild(sparkle);
+            <div class="card">
+                <h3>🎈 Barbara Sorrindo</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto3.jpg" alt="Barbara sorrindo" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Seu sorriso ilumina meus dias
+                </p>
+            </div>
 
-          setTimeout(() => {
-            sparkle.remove();
-          }, 1000);
-        }, i * 100);
-      }
-    }
+            <div class="card">
+                <h3>🌟 Nosso Futuro Juntos</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto4.jpg" alt="Nosso futuro juntos" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Tudo o que ainda vamos viver...
+                </p>
+            </div>
 
+            <div class="card">
+                <h3>🌹 Barbara Dormindo</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto5.jpg" alt="Barbara dormindo" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Meu anjinho em paz
+                </p>
+            </div>
 
-    // Adicionar efeito de clique em qualquer lugar
-    document.addEventListener('click', function (e) {
-      if (Math.random() > 0.7) { // 30% de chance
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.innerHTML = '💖';
-        sparkle.style.left = e.clientX + 'px';
-        sparkle.style.top = e.clientY + 'px';
-        sparkle.style.animation = 'sparkle 1s ease-out forwards';
+            <div class="card">
+                <h3>🍕 Nossos Encontros</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto6.jpg" alt="Nossos encontros" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Cada encontro é especial
+                </p>
+            </div>
 
-        document.body.appendChild(sparkle);
+            <div class="card">
+                <h3>🎉 Comemorações Juntos</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto7.jpg" alt="Comemorações juntos" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Celebrando a vida e o amor
+                </p>
+            </div>
 
-        setTimeout(() => {
-          sparkle.remove();
-        }, 1000);
-      }
-    });
+            <div class="card">
+                <h3>🌅 Nossos Amanheceres</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto8.jpg" alt="Nossos amanheceres" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    Cada novo dia contigo
+                </p>
+            </div>
 
-    // Variáveis para controle do rastro do mouse
-    let lastMouseTime = 0;
-    const mouseTrailDelay = 100; // Delay entre corações (em ms)
+            <div class="card">
+                <h3>💞 Barbara Perfeita</h3>
+                <div class="photo-frame" onclick="changePhoto(this)">
+                    <img src="fotos/foto9.jpg" alt="Barbara perfeita" />
+                </div>
+                <p style="text-align: center; color: #666; font-style: italic;">
+                    A perfeição tem nome: Barbara
+                </p>
+            </div>
+        </div>
 
-    // Função para criar coração no rastro do mouse
-    function createMouseHeart(x, y) {
-      const heart = document.createElement('div');
-      heart.className = 'mouse-heart';
+        <div class="love-message">
+            <h2>Barbara, meu amor ♥</h2>
+            <p>
+                Você é a pessoa mais especial do mundo. Cada dia ao seu lado é uma nova aventura, 
+                um novo motivo para sorrir. Obrigado por fazer minha vida tão mais colorida e feliz. 
+                Te amo mais que ontem, menos que amanhã! 
+            </p>
+        </div>
 
-      // Variação de símbolos de coração
-      const heartSymbols = ['♥', '💖', '💕', '💗', '💝'];
-      heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        <div class="interactive-section">
+            <h3 style="color: #d63384; margin-bottom: 30px;">💝 Surpresas para você</h3>
+            
+            <button class="love-button" onclick="showSurprise(1)">
+                💌 Mensagem Secreta
+            </button>
+            
+            <button class="love-button" onclick="showSurprise(2)">
+                🎵 Nossa Música
+            </button>
+            
+            <button class="love-button" onclick="showSurprise(3)">
+                🌺 Promessa de Amor
+            </button>
 
-      // Posição do coração
-      heart.style.left = (x - 8) + 'px'; // Centralizar no cursor
-      heart.style.top = (y - 8) + 'px';
+            <div id="surprise1" class="surprise-message">
+                <h4 style="color: #d63384;">💌 Só para você saber...</h4>
+                <p>Barbara, você é meu pensamento ao acordar e meu último suspiro antes de dormir. 
+                Cada batida do meu coração ecoa seu nome. Te amo infinitamente! ♥</p>
+            </div>
 
-      // Variação no tamanho
-      const size = Math.random() * 8 + 12; // Entre 12px e 20px
-      heart.style.fontSize = size + 'px';
+            <div id="surprise2" class="surprise-message">
+                <h4 style="color: #d63384;">🎵 Nossa trilha sonora</h4>
+                <p>Toda vez que escuto nossa música, meu coração acelera e eu me lembro de como 
+                somos perfeitos juntos. Vamos dançar ela para sempre! 💃🕺</p>
+            </div>
 
-      // Variação na cor
-      const colors = ['#ff6b9d', '#d63384', '#ff8fab', '#ffa8c5'];
-      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            <div id="surprise3" class="surprise-message">
+                <h4 style="color: #d63384;">🌺 Minha promessa</h4>
+                <p>Prometo te amar todos os dias da minha vida, te fazer sorrir quando estiver triste, 
+                te abraçar quando precisar de carinho e ser seu companheiro em todas as aventuras! 🤝♥</p>
+            </div>
+        </div>
 
-      document.body.appendChild(heart);
+        <div class="memory-timeline">
+            <h3 style="text-align: center; color: #d63384; margin-bottom: 30px;">📅 Nossa Linha do Tempo</h3>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Primeiro Encontro</div>
+                <div>
+                    <strong>O dia que mudou tudo</strong><br>
+                    Quando te vi pela primeira vez, soube que você seria especial na minha vida ✨
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Primeiro Beijo</div>
+                <div>
+                    <strong>Momento mágico</strong><br>
+                    O tempo parou e o mundo ficou mais bonito. Foi perfeito! 💋
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Primeiro "Te Amo"</div>
+                <div>
+                    <strong>Palavras do coração</strong><br>
+                    Quando finalmente disse o que meu coração já sabia há tempos ♥
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Hoje e Sempre</div>
+                <div>
+                    <strong>Nosso presente e futuro</strong><br>
+                    Cada dia é uma nova página da nossa história de amor 📖💕
+                </div>
+            </div>
+        </div>
+    </div>
 
-      // Remover o coração após a animação
-      setTimeout(() => {
-        heart.remove();
-      }, 3000);
-    }
+    <script>
+        // Criar corações flutuantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '♥';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
 
-    // Event listener para movimento do mouse
-    document.addEventListener('mousemove', function (e) {
-      const currentTime = Date.now();
+        // Criar corações a cada 1.5 segundos
+        setInterval(createFloatingHeart, 1500);
 
-      // Throttling para não criar muitos corações
-      if (currentTime - lastMouseTime > mouseTrailDelay) {
-        createMouseHeart(e.clientX, e.clientY);
-        lastMouseTime = currentTime;
-      }
-    });
+        // Função para mostrar surpresas
+        function showSurprise(num) {
+            // Esconder todas as surpresas
+            for(let i = 1; i <= 3; i++) {
+                document.getElementById('surprise' + i).style.display = 'none';
+            }
+            
+            // Mostrar a surpresa selecionada
+            const surprise = document.getElementById('surprise' + num);
+            surprise.style.display = 'block';
+            
+            // Criar brilhos especiais
+            createSparkles();
+        }
 
-    // Animação de entrada
-    window.addEventListener('load', function () {
-      // Criar alguns corações iniciais
-      for (let i = 0; i < 5; i++) {
-        setTimeout(createFloatingHeart, i * 300);
-      }
+        // Função para criar brilhos
+        function createSparkles() {
+            for(let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                    sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }, i * 100);
+            }
+        }
 
-      // Efeito de boas-vindas
-      setTimeout(() => {
-        createSparkles();
-      }, 1000);
-    });
-  </script>
+        // Função para trocar fotos (alternância entre cards)
+        function changePhoto(element) {
+            const card = element.closest('.card');
+            const title = card.querySelector('h3');
+            const description = card.querySelector('p');
+            const img = element.querySelector('img');
+            
+            // Verificar qual card é este baseado no título
+            const isAlternate = element.hasAttribute('data-alternate');
+            
+            if (title.innerHTML.includes('🌹 Nossa Primeira Foto Juntos') || title.innerHTML.includes('💑 Nosso Primeiro Selfie')) {
+                if (!isAlternate) {
+                    title.innerHTML = '💑 Nosso Primeiro Selfie';
+                    img.src = 'fotos/foto10.jpg';
+                    img.alt = 'Nosso primeiro selfie';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A primeira de muitas fotos juntos...</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🌹 Nossa Primeira Foto Juntos';
+                    img.src = 'fotos/foto1.jpg';
+                    img.alt = 'Nossa primeira foto juntos';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">O momento em que tudo começou...</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('💕 Nosso Momento Favorito') || title.innerHTML.includes('🎭 Momentos Divertidos')) {
+                if (!isAlternate) {
+                    title.innerHTML = '🎭 Momentos Divertidos';
+                    img.src = 'fotos/foto11.jpg';
+                    img.alt = 'Momentos divertidos';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Rindo juntos é a melhor parte</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '💕 Nosso Momento Favorito';
+                    img.src = 'fotos/foto2.jpg';
+                    img.alt = 'Nosso momento favorito';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Lembranças que guardarei para sempre</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🎈 Barbara Sorrindo') || title.innerHTML.includes('😍 Barbara Linda')) {
+                if (!isAlternate) {
+                    title.innerHTML = '😍 Barbara Linda';
+                    img.src = 'fotos/foto12.jpg';
+                    img.alt = 'Barbara linda';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A mulher mais linda do mundo</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🎈 Barbara Sorrindo';
+                    img.src = 'fotos/foto3.jpg';
+                    img.alt = 'Barbara sorrindo';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Seu sorriso ilumina meus dias</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🌟 Nosso Futuro Juntos') || title.innerHTML.includes('🚀 Nossas Aventuras')) {
+                if (!isAlternate) {
+                    title.innerHTML = '🚀 Nossas Aventuras';
+                    img.src = 'fotos/foto13.jpg';
+                    img.alt = 'Nossas aventuras';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Explorando o mundo juntos</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🌟 Nosso Futuro Juntos';
+                    img.src = 'fotos/foto4.jpg';
+                    img.alt = 'Nosso futuro juntos';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Tudo o que ainda vamos viver...</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🌹 Barbara Dormindo') || title.innerHTML.includes('😴 Barbara Descansando')) {
+                if (!isAlternate) {
+                    title.innerHTML = '😴 Barbara Descansando';
+                    img.src = 'fotos/foto14.jpg';
+                    img.alt = 'Barbara descansando';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Tranquilidade em pessoa</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🌹 Barbara Dormindo';
+                    img.src = 'fotos/foto5.jpg';
+                    img.alt = 'Barbara dormindo';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Meu anjinho em paz</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🍕 Nossos Encontros') || title.innerHTML.includes('🍽️ Jantares Românticos')) {
+                if (!isAlternate) {
+                    title.innerHTML = '🍽️ Jantares Românticos';
+                    img.src = 'fotos/foto15.jpg';
+                    img.alt = 'Jantares românticos';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Saboreando o amor</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🍕 Nossos Encontros';
+                    img.src = 'fotos/foto6.jpg';
+                    img.alt = 'Nossos encontros';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Cada encontro é especial</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🎉 Comemorações Juntos') || title.innerHTML.includes('🎂 Aniversários Especiais')) {
+                if (!isAlternate) {
+                    title.innerHTML = '🎂 Aniversários Especiais';
+                    img.src = 'fotos/foto16.jpg';
+                    img.alt = 'Aniversários especiais';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Momentos únicos para celebrar</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🎉 Comemorações Juntos';
+                    img.src = 'fotos/foto7.jpg';
+                    img.alt = 'Comemorações juntos';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Celebrando a vida e o amor</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('🌅 Nossos Amanheceres') || title.innerHTML.includes('🌙 Nossas Noites')) {
+                if (!isAlternate) {
+                    title.innerHTML = '🌙 Nossas Noites';
+                    img.src = 'fotos/foto17.jpg';
+                    img.alt = 'Nossas noites';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Sob as estrelas contigo</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '🌅 Nossos Amanheceres';
+                    img.src = 'fotos/foto8.jpg';
+                    img.alt = 'Nossos amanheceres';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Cada novo dia contigo</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            else if (title.innerHTML.includes('💞 Barbara Perfeita') || title.innerHTML.includes('👸 Minha Princesa')) {
+                if (!isAlternate) {
+                    title.innerHTML = '👸 Minha Princesa';
+                    img.src = 'fotos/foto18.jpg';
+                    img.alt = 'Minha princesa';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">Realeza em forma de pessoa</span>';
+                    element.setAttribute('data-alternate', 'true');
+                } else {
+                    title.innerHTML = '💞 Barbara Perfeita';
+                    img.src = 'fotos/foto9.jpg';
+                    img.alt = 'Barbara perfeita';
+                    description.innerHTML = '<span style="text-align: center; color: #666; font-style: italic;">A perfeição tem nome: Barbara</span>';
+                    element.removeAttribute('data-alternate');
+                }
+            }
+            
+            // Adicionar efeito visual na transição
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Criar efeito de brilho
+            createSparkles();
+        }
+
+        // Adicionar efeito de clique em qualquer lugar
+        document.addEventListener('click', function(e) {
+            if(Math.random() > 0.7) { // 30% de chance
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = '💖';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+
+        // Variáveis para controle do rastro do mouse
+        let lastMouseTime = 0;
+        const mouseTrailDelay = 100; // Delay entre corações (em ms)
+
+        // Função para criar coração no rastro do mouse
+        function createMouseHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'mouse-heart';
+            
+            // Variação de símbolos de coração
+            const heartSymbols = ['♥', '💖', '💕', '💗', '💝'];
+            heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            
+            // Posição do coração
+            heart.style.left = (x - 8) + 'px'; // Centralizar no cursor
+            heart.style.top = (y - 8) + 'px';
+            
+            // Variação no tamanho
+            const size = Math.random() * 8 + 12; // Entre 12px e 20px
+            heart.style.fontSize = size + 'px';
+            
+            // Variação na cor
+            const colors = ['#ff6b9d', '#d63384', '#ff8fab', '#ffa8c5'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(heart);
+            
+            // Remover o coração após a animação
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        // Event listener para movimento do mouse
+        document.addEventListener('mousemove', function(e) {
+            const currentTime = Date.now();
+            
+            // Throttling para não criar muitos corações
+            if (currentTime - lastMouseTime > mouseTrailDelay) {
+                createMouseHeart(e.clientX, e.clientY);
+                lastMouseTime = currentTime;
+            }
+        });
+
+        // Animação de entrada
+        window.addEventListener('load', function() {
+            // Criar alguns corações iniciais
+            for(let i = 0; i < 5; i++) {
+                setTimeout(createFloatingHeart, i * 300);
+            }
+            
+            // Efeito de boas-vindas
+            setTimeout(() => {
+                createSparkles();
+            }, 1000);
+        });
+    </script>
 </body>
-
 </html>
