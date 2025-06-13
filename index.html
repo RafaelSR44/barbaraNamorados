@@ -60,6 +60,70 @@
             }
         }
 
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        .music-control {
+            background: linear-gradient(135deg, #ff6b9d, #d63384);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .music-info {
+            color: #d63384;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .volume-control {
+            width: 60px;
+            height: 5px;
+            background: #ffc7de;
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-control::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #d63384;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
         .container {
             position: relative;
             z-index: 10;
@@ -364,11 +428,39 @@
             .container {
                 padding: 10px;
             }
+
+            .music-player {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
+
+            .music-info {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="floating-hearts"></div>
+    
+    <!-- Player de Música -->
+    <div class="music-player">
+        <button class="music-control" id="playPauseBtn" onclick="toggleMusic()">
+            ▶️
+        </button>
+        <div class="music-info" id="musicInfo">
+            🎵 Música ♥
+        </div>
+        <input type="range" class="volume-control" id="volumeControl" min="0" max="100" value="50" onchange="changeVolume()">
+    </div>
+
+    <!-- Áudio (escondido) -->
+    <audio id="backgroundMusic" loop>
+        <source src="musica/musica.mp3" type="audio/mpeg">
+        <source src="musica/musica.ogg" type="audio/ogg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
     
     <div class="container">
         <header class="header">
@@ -549,6 +641,61 @@
     </div>
 
     <script>
+        // Variáveis do player de música
+        const audio = document.getElementById('backgroundMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const musicInfo = document.getElementById('musicInfo');
+        const volumeControl = document.getElementById('volumeControl');
+        let isPlaying = false;
+
+        // Função para tocar/pausar música
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                playPauseBtn.innerHTML = '▶️';
+                musicInfo.textContent = '🎵 Nossa música ♥';
+                isPlaying = false;
+            } else {
+                audio.play().then(() => {
+                    playPauseBtn.innerHTML = '⏸️';
+                    musicInfo.textContent = '🎵 Tocando nossa música ♥';
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('Erro ao reproduzir áudio:', error);
+                    alert('Clique para começar a tocar nossa música! 🎵');
+                });
+            }
+        }
+
+        // Função para mudar volume
+        function changeVolume() {
+            audio.volume = volumeControl.value / 100;
+        }
+
+        // Tentar reproduzir automaticamente quando a página carregar
+        window.addEventListener('load', function() {
+            // Definir volume inicial
+            audio.volume = 0.5;
+            
+            // Tentar reproduzir (alguns navegadores bloqueiam autoplay)
+            audio.play().then(() => {
+                isPlaying = true;
+                playPauseBtn.innerHTML = '⏸️';
+                musicInfo.textContent = '🎵 Tocando nossa música ♥';
+            }).catch(error => {
+                console.log('Autoplay bloqueado pelo navegador');
+                // Mostrar mensagem para clicar no botão play
+                musicInfo.textContent = '🎵 Clique para tocar ♥';
+            });
+        });
+
+        // Listener para quando a música terminar (embora esteja em loop)
+        audio.addEventListener('ended', function() {
+            isPlaying = false;
+            playPauseBtn.innerHTML = '▶️';
+            musicInfo.textContent = '🎵 Nossa música ♥';
+        });
+
         // Criar corações flutuantes
         function createFloatingHeart() {
             const heart = document.createElement('div');
